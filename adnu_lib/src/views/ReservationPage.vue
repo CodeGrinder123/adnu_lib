@@ -129,13 +129,13 @@
                 </div>
                 <div class="row pb-3">
                     <div class="col-sm">
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter your full name here">
+                        <input type="text" class="form-control" id="formGroupExampleInput" v-model="full_name" placeholder="Enter your full name here">
                     </div>
                     <div class="col-sm">
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter your email here">
+                        <input type="text" class="form-control" id="formGroupExampleInput" v-model="user_email" placeholder="Enter your email here">
                     </div>
                     <div class="col-sm">
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter your mobile number here">
+                        <input type="text" class="form-control" id="formGroupExampleInput" v-model="desc" placeholder="Enter your mobile number here">
                     </div>
                 </div>
 
@@ -156,28 +156,35 @@
                         <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter the date here">
                     </div>
                     <div class="col-sm">
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter the time here">
+                        <input type="text" class="form-control" id="formGroupExampleInput" v-model="time" placeholder="Enter the time here">
                     </div>
                     <div class="col-sm">
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter your organization/department here">
+                        <input type="text" class="form-control" id="formGroupExampleInput" v-model="org_dept" placeholder="Enter your organization/department here">
                     </div>
                 </div>
 
                 <div class="row pb-2">
                     <div class="col d-flex justify-content-start fw-bold">
-                        <label for="formGroupExampleInput">Venue</label>
+                        <label for="formGroupExampleInput">Description</label>
                     </div>
                     <div class="col d-flex justify-content-start fw-bold">
-                        <label for="formGroupExampleInput">Description</label>
+                        <label for="formGroupExampleInput">Venue</label>
                     </div>
                 </div>
 
                 <div class="row pb-5">
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="Enter the venue here">
-                    </div>
-                    <div class="col">
                         <input type="text" class="form-control" placeholder="Enter the description of the event here">
+                    </div>
+
+                    <div class="col">
+                        <select name="plan" id="plan" class="btn border float-start">
+                            <option value="none" selected disabled hidden>List of Venues</option>
+                            <option value="free">Free</option>
+                            <option value="starter">Starter </option>
+                            <option value="professional">Professional</option>
+                            <option value="corporate">Corporate</option>
+                        </select>
                     </div>
                 </div>
                 <button class="btn btn-primary float-start" type="submit" @click="nextPage">
@@ -192,7 +199,7 @@
                     <label for="formGroupExampleInput">Equipments</label>
                 </div>
                 <div class="pb-3 col d-flex justify-content-start">
-                    <ul style="list-style: none;">
+                    <ul style="list-style: none;" class="text-left">
                         <li>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -247,6 +254,7 @@
 <script>
 import { ScheduleComponent, Day, Week, WorkWeek, Month, Agenda } from "@syncfusion/ej2-vue-schedule";
 import PopUpModal from "@/components/PopUpModal.vue";
+import $ from 'jquery';
 
 export default{
     components: {
@@ -263,8 +271,17 @@ export default{
             sliced_holder: '',
             picked_date: '',
             next_page: false,
+            full_name: '',
+            user_email: '',
+            mobile_number: '',
+            time: '',
+            org_dept: '',
+            venue: '',
+            desc: '',
+            isOpen: false,
         }
     },
+
     methods: {
         check(){
             // console.log("Selected date:",this.schedulerSelectedDate);
@@ -278,8 +295,19 @@ export default{
             }
         },
 
+        // drop(){
+            
+        // },
+
         nextPage(){
             this.next_page = true;
+            console.log("Full Name: ", this.full_name);
+            console.log("Email: ", this.user_email);
+            console.log("Mobile Number: ", this.mobile_number);
+            console.log("Time: ", this.time);
+            console.log("Org/Dept: ", this.org_dept);
+            console.log("Venue: ", this.venue);
+            console.log("Description: ", this.desc);
         },
 
         back_btn(){
@@ -306,6 +334,7 @@ export default{
 
     mounted: async function(){
         console.log(ScheduleComponent);
+        $('#dropdownMenuButton').dropdown();
     }
 }
 </script>
