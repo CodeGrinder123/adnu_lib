@@ -153,7 +153,7 @@
                 </div>
                 <div class="row pb-3">
                     <div class="col-sm">
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter the date here">
+                        <input type="text" v-model="date" class="form-control" id="formGroupExampleInput" placeholder="Enter the date here">
                     </div>
                     <div class="col-sm">
                         <input type="text" class="form-control" id="formGroupExampleInput" v-model="time" placeholder="Enter the time here">
@@ -279,6 +279,8 @@ export default{
             venue: '',
             desc: '',
             isOpen: false,
+            date: '',
+            date_slicer: '',
         }
     },
 
@@ -292,12 +294,10 @@ export default{
                 this.sliced_holder = String(this.schedulerSelectedDate).slice(0, 15);
                 console.log(this.sliced_holder);
                 this.picked_date = this.sliced_holder;
+                this.date_slicer = String(this.schedulerSelectedDate).slice(3, 15);
+                this.date = this.date_slicer;
             }
         },
-
-        // drop(){
-            
-        // },
 
         nextPage(){
             this.next_page = true;
