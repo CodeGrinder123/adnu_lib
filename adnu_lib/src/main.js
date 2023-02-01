@@ -10,7 +10,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 registerLicense("ORg4AjUWIQA/Gnt2VVhkQlFadVdJX3xLe0x0RWFab1Z6d1ZMYllBJAtUQF1hSn5SdENhWXxacXxVTmNY");
 const app = createApp(App).use(router);
 
-let gauthClientId = '976977201109-avjdhuu7onnok9c0g5i5p2mjr31oioj8.apps.googleusercontent.com';
+let gauthClientId = '419495325412-ceo90h12t4rpq3o9boqjlulv8sj4c550.apps.googleusercontent.com';
 app.use(gAuthPlugin,{
     clientId: gauthClientId,
 })

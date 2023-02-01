@@ -143,7 +143,7 @@ export default{
     },
     methods: {
         async handleSignIn(){
-            try {
+            // try {
                 let googleUser = await gapi.auth2.getAuthInstance().signIn();
 
                 this.profileFirstname = googleUser.getBasicProfile().getGivenName(); //tw.lv.rZ;
@@ -151,15 +151,19 @@ export default{
                 this.profileFullName = googleUser.getBasicProfile().getName(); //tw.lv.Af;  
                 this.profileImage = googleUser.getBasicProfile().getImageUrl(); //tw.lv.nO; 
                 this.profileEmail = googleUser.getBasicProfile().getEmail();  //tw.lv.Xv;  
-                this.profileId = googleUser.getBasicProfile().getId();   //tw.lv.ZX;  
-            } catch(error) {
-                console.log(error);
-            }
+                this.profileId = googleUser.getBasicProfile().getId();   //tw.lv.ZX;
+                console.log(googleUser);
+                if(googleUser){
+                    this.$router.push({name: 'home'});
+                }
+            // } catch(error) {
+            //     console.log(error);
+            // }
         }
     },
 
     mounted: async function(){
-        try{
+        // try{
             gapi.load("client:auth2", function () {
                 gapi.auth2.getAuthInstance();
             });
@@ -169,9 +173,10 @@ export default{
             console.log("This is the googleUser:", googleUser);
             this.currentUser = googleUser.currentUser.get().getBasicProfile().getName();
             this.gapiLoaded = true;
-        } catch(error){
-            console.log(error);
-        }
+            
+        // } catch(error){
+        //     console.log(error);
+        // }
     }
 
 }
